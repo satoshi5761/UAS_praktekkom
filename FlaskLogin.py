@@ -3,30 +3,31 @@ import sqlite3
 
 app = Flask(__name__)
 
-@app.route("/login", methods=['POST'])  
+@app.route("/login", methods=[])  
 def login():
-    """
-    HINT: return "Welcome back username!" jika username dan password ada dalam database
-    jika tidak maka, return "Login Failed! Please check your username & password!"
-    """
     pass
 
 def userLogin(username: str, password: str):
     # Open database connection
     connection = sqlite3.connect("user.db")
     cursor = connection.cursor()
+    
     # Execute the query
-    cursor.execute("SELECT username, password FROM user WHERE username = ? AND password = ?;", 
-                   (username, password))
-    count = cursor.fetchone()
+    cursor.execute(';')
+
+    # fetch query 
+    count = cursor.fetchone() # fetch the first available data from cursor.execute
+                            # None jika tidak ada
+    
     # Close the connection
     connection.close()
+
     return count
 
 
 if __name__ == '__main__':
     print("This is flask Program!")
-    app.run()
+    app.run(debug=True)
 
 
 """
@@ -79,13 +80,3 @@ def do_this(syntax: str):
     connection.commit()
     connection.close()
 
-"""
-resources untuk belajar algoritma
-persiapan semester 2
-https://codingbat.com/python *
-https://www.hackerrank.com/ *
-https://codeforces.com/ *favorit
-https://leetcode.com/ *
-https://adventofcode.com/ *NATAL
---GOOD LUCK UAS (for me and for you)--
-"""
